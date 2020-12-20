@@ -8,5 +8,6 @@ Intentional connectivity and more.
 
 In the second phase of the project, we will use the structure of the data and algorithms to realize the "Pokemon Challenge" game - which includes processes, a graphical interface, and an automated system for playing against
 "Server".
+![alt text](images/level%2019.jpg)
 
 
