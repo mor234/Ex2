@@ -78,7 +78,7 @@ public class S_DWGraph implements directed_weighted_graph {
      * @return the node_data by the node_id, null if none.
      */
     @Override
-    public synchronized node_data getNode(int key) {
+    public  node_data getNode(int key) {
 
         return nodes.get(key);
     }
@@ -122,7 +122,7 @@ public class S_DWGraph implements directed_weighted_graph {
      * @param w    - positive weight representing the cost (aka time, price, etc) between src-->dest.
      */
     @Override
-    public void connect(int src, int dest, double w) {
+       public void connect(int src, int dest, double w) {
 
         //if the weight is positive
         if (w > 0) {
@@ -137,11 +137,10 @@ public class S_DWGraph implements directed_weighted_graph {
                 return;
             }
 
-
-            mc++;//update changes count
-
             /*if the edge exist- update the edge*/
             if (edges.containsKey(edgeStringKey(src, dest))) {
+                if (edges.get(edgeStringKey(src, dest)).getWeight() == w)//if the same weight
+                    return;
                 edges.replace(edgeStringKey(src, dest), new Edge(src, dest, w));
 
             }
@@ -156,6 +155,7 @@ public class S_DWGraph implements directed_weighted_graph {
                 //keep the indexes of the place in the array in the nodes, in order to remove in O(1)
 
             }
+            mc++;//update changes count only if the weight is different/ created a new edge.
         }
 
     }
