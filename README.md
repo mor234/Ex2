@@ -14,5 +14,10 @@ Screen shot of a game in level 19.
 
 The red circles are agent, the blue are nodes, and the green and wello ones are pokemons.
 
-# instalation
-### for more detailed information- look in the wiki pages of this repository.
+# Instalation
+To download the entire project:
+git clone https://github.com/mor234/Ex2.git
+To activate the game: 
+download Ex2.jar' and data' place in the same packege' and press Ex2.jar twice.
+
+### For more detailed information- look in the wiki pages of this repository.
