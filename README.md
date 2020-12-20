@@ -1,4 +1,4 @@
-# Ex2
+# Ex2 -directinal weighted graph, gui and game algorithm
 This project was done as an assignment for students in an object-oriented programming course.
 
 In this project a weighted directed graph data structure is implemented.
