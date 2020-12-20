@@ -1,4 +1,4 @@
-#Ex2 -directinal weighted graph, gui and game algorithm
+# Ex2 -directinal weighted graph, gui and game algorithm
 This project was done as an assignment for students in an object-oriented programming course.  
 In this project a weighted directed graph data structure is implemented.  
 A number of algorithms are implemented on the directed and weighted graphs, Including:
@@ -14,5 +14,5 @@ Screen shot of a game in level 19.
 
 The red circles are agent, the blue are nodes, and the green and wello ones are pokemons.
 
-#instalation
-###for more detailed information- look in the wiki pages of this repository.
+# instalation
+### for more detailed information- look in the wiki pages of this repository.
