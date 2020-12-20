@@ -1,5 +1,6 @@
 # Ex2
 This project was done as an assignment for students in an object-oriented programming course.
+
 In this project a weighted directed graph data structure is implemented.
 A number of algorithms are implemented on the directed and weighted graphs,
 Including the ability to save and restore the graph from a Json format file, calculate a very short directed trajectory, test
