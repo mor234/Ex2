@@ -335,7 +335,13 @@ public class S_DWGraph implements directed_weighted_graph {
         }
     }
 
-    public GraphForSerlization serlizationFormat() {
+    /**
+     * This methode return a class containing only the Collectiones values of the edges and nodes hash maps
+     * inorder to match the required files in Json.
+     * @return
+     */
+
+    public GraphForSerlization serializationFormat() {
         return new GraphForSerlization(nodes.values(), edges.values());
 
     }

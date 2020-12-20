@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * this class is a gui login panel which accept from the user
+ */
 public class StartPanel extends JPanel implements ActionListener {
 
     private JFrame frame;
@@ -15,11 +18,18 @@ public class StartPanel extends JPanel implements ActionListener {
     private JTextField idTextField, levelTextField;
     private Id_Level id_level;
 
+    /**
+     * Constructor.
+     * organize the graphical interface, inorder to be able to open  the screen start panel,
+     * which except login information for the game from the user.
+     * @param id_lev object to put the information from the user in.
+     */
 
-    public StartPanel(Id_Level lock) {
+
+    public StartPanel(Id_Level id_lev) {
         super(null);
         //initialize the object that will contain the id and level numbers
-        id_level = lock;
+        id_level = id_lev;
         // id label
         idLabel = new JLabel();
         idLabel.setText("login id :");
@@ -53,6 +63,10 @@ public class StartPanel extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * create the frame, add the panel and show the start screen
+     */
+
 
     public void startScreen() {
         frame = new JFrame();
@@ -64,6 +78,12 @@ public class StartPanel extends JPanel implements ActionListener {
 
 
     }
+
+    /**
+     * when press the button, take the id and level and if they are int close the screen and keep the information
+     * if not- show error to the screen and wait.
+     * @param e
+     */
 
 
     @Override

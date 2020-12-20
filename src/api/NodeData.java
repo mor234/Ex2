@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * This class represent a node (vertex) in a (directional) weighted graph.
+ * This class represent a node (vertex) in a directional weighted graph.
  *
  * @author mor234
  */

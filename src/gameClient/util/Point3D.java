@@ -8,7 +8,7 @@ import api.geo_location;
 import java.io.Serializable;
 
 /**
- * This class represents a 3Dpoint
+ * This class represents a 3D point
  *
  * @author boaz_benmoshe
  */

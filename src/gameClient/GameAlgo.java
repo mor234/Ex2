@@ -69,26 +69,6 @@ public class GameAlgo {
     }
 
 
-    /**
-     * write a given json string into a file
-     *
-     * @param fileName
-     * @param json
-     * @return
-     */
-
-    public static boolean writeJsonToFile(String fileName, String json) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-            writer.write(json);
-            writer.close();
-            return true;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     /**
      * Choose the next node for this agent, look for the closet pokemon, and sign for the other agents it's taken,
@@ -96,12 +76,11 @@ public class GameAlgo {
      *
      * @param r        agent
      * @param g        the graph the game is on
-     * @param gameS    the game
      * @param pokemons list of all the pokemones currently in he game
      * @return the key of the recommended next node for this agent inorder to reach a pokemon
      */
 
-    private static int nextNode2(CL_Agent r, DWGraph_Algo g, game_service gameS, List<CL_Pokemon> pokemons) {
+    private static int nextNode(CL_Agent r, DWGraph_Algo g, List<CL_Pokemon> pokemons) {
         int src = r.getSrcNode();
 
         //find the closest pokemon
@@ -116,7 +95,8 @@ public class GameAlgo {
 
         for (CL_Pokemon pok : pokemons) {
 
-            if (!pok.isTaken()) {
+            if (!pok.isTaken())//if the pok is not assigned to another agent
+            {
 
                 Arena.updateEdge(pok, g.getGraph());
                 destNode = pok.get_edge().getDest();
@@ -141,8 +121,7 @@ public class GameAlgo {
                 }
             }
         }
-//        if (pathToPokDest.size() == 2)//it's on the next edge
-//            isAgentOnNode = true;//sign it's need to make a move
+
         chosenPok.setTaken(true);//if wasn't any available pok, it's the empty pok and nothing happened.
         return minIndex;
     }
@@ -167,13 +146,12 @@ public class GameAlgo {
         for (int i = 0; i < log.size(); i++) {
             CL_Agent r = log.get(i);
             int dest = r.getNextNode();
-            int src = r.getSrcNode();
             int id = r.getID();
             if (dest == -1) {
                 isAgentOnNode = true;
-                int new_dest = nextNode2(r, (DWGraph_Algo) gg, gameS, pokemons);
+                int new_dest = nextNode(r, (DWGraph_Algo) gg, pokemons);
                 gameS.chooseNextEdge(id, new_dest);
-                System.out.println("Agent:" + i + ") " + r + "  move to node " + new_dest);
+//                System.out.println("Agent:" + i + ") " + r + "  move to node " + new_dest);
             }
         }
         return isAgentOnNode;

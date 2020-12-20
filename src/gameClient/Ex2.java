@@ -20,111 +20,106 @@ public class Ex2 {
 
 
     /**
-     * the main program
+     * The main program, the controller, open the graphical interfaces, call to logical functions
+     * and run the game.
      *
      * @param args
      */
 
     public static void main(String args[]) throws InterruptedException {
-//
-//        StartPanel p;
-//
-//        if (args.length > 0) {
-//
-//            if (!id_level.setID_Level(args[0], args[1])) ;//need to check for errors
-//            System.exit(-1);
-//
-//
-//        } else {
-//            p = new StartPanel(id_level);
-//            p.startScreen();
-//
-//            while (p.isVisible())
-//                Thread.sleep(100);
-//        }
-//        //after this, lock contains id and level number
 
-        for (int i =0; i <= 5; i++) {
-            if(i==1||i==2)
-                continue;
-            //     game_service gameS = Game_Server_Ex2.getServer(id_level.getLevel()); // you have [0,23] games
-            game_service gameS = Game_Server_Ex2.getServer(i);
-//        gameS.login(id_level.getId());
-            gameS.login(211884309);
+        StartPanel p;
+
+        if (args.length > 0) {
+
+            if (!id_level.setID_Level(args[0], args[1])) ;//need to check for errors
+            System.exit(-1);
 
 
-            //initialize
-            GameInfo gameInfo = new GameInfo();
-            gameInfo.load(getGsonObjectFromString(gameS.toString()));
-            //load the graph
-            dw_graph_algorithms gameGraph = new DWGraph_Algo();
-            gameGraph.load(gameInfo.graphFileLoc);
-            //initialize view
-            Arena _ar = new Arena();
-            _ar.setGraph(gameGraph.getGraph());
-            _ar.setPokemons(Arena.json2Pokemons(gameS.getPokemons()));
-            //place the agents
-            GameAlgo.chooseStartLocation(gameS, gameInfo.numberOfAgent, gameGraph, _ar.getPokemons());
-            _ar.setAgents(Arena.getAgents(gameS.getAgents(), gameGraph.getGraph()));
+        } else {
+            p = new StartPanel(id_level);
+            p.startScreen();
+
+            while (p.isVisible())
+                Thread.sleep(100);
+        }
+        //after this, id_level contains id and level number
+
+        game_service gameS = Game_Server_Ex2.getServer(id_level.getLevel()); // you have [0,23] games
+        gameS.login(id_level.getId());
 
 
-            _win = new MyFrame("Ex2 ");
-            _win.setSize(1000, 700);
+        //initialize
+        GameInfo gameInfo = new GameInfo();
+        gameInfo.load(getGsonObjectFromString(gameS.toString()));
+        //load the graph
+        dw_graph_algorithms gameGraph = new DWGraph_Algo();
+        gameGraph.load(gameInfo.graphFileLoc);
+        //initialize view
+        Arena _ar = new Arena();
+        _ar.setGraph(gameGraph.getGraph());
+        _ar.setPokemons(Arena.json2Pokemons(gameS.getPokemons()));
+        //place the agents
+        GameAlgo.chooseStartLocation(gameS, gameInfo.numberOfAgent, gameGraph, _ar.getPokemons());
+        _ar.setAgents(Arena.getAgents(gameS.getAgents(), gameGraph.getGraph()));
 
-            _win.update(_ar);
-            _win.setVisible(true);
 
-            gameS.startGame();
-            _ar.setTimeToEnd(gameS.timeToEnd());
-            gameS.move();
-            _win.setTitle("Ex2 - OOP: (NONE trivial Solution). level: " + gameInfo.gameLevel);
+        _win = new MyFrame("Ex2 ");
+        _win.setSize(1000, 700);
 
-            long tlastMove = gameS.timeToEnd();
-            int ind = 0;
-            long dt = 100;
+        _win.update(_ar);
+        _win.setVisible(true);
 
-            while (gameS.isRunning()) {
+        gameS.startGame();
+        _ar.setTimeToEnd(gameS.timeToEnd());
+        gameS.move();
+        _win.setTitle("Ex2 - OOP: (NONE trivial Solution). level: " + gameInfo.gameLevel);
 
-                GameAlgo.moveAgants(gameS, gameGraph);
-                try {
-                    if (ind % 1 == 0) {
-                        _ar.setGraph(gameGraph.getGraph());
-                        _ar.setPokemons(Arena.json2Pokemons(gameS.getPokemons()));
-                        _ar.setAgents(Arena.getAgents(gameS.getAgents(), gameGraph.getGraph()));
-                        _ar.setTimeToEnd(gameS.timeToEnd());
-                        gameInfo.load(getGsonObjectFromString(gameS.toString()));
-                        _ar.setMovesSoFar(gameInfo.moves);
-                        _win.update(_ar);
-                        _win.repaint();
-                    }
+        long tlastMove = gameS.timeToEnd();
+        int ind = 0;
+        long dt = 100;
 
-                    Thread.sleep(dt);
-                    ind++;
-                } catch (Exception e) {
-                    e.printStackTrace();
+        while (gameS.isRunning()) {
+
+            GameAlgo.moveAgants(gameS, gameGraph);
+            try {
+                if (ind % 2 == 0) {
+                    _ar.setGraph(gameGraph.getGraph());
+                    _ar.setPokemons(Arena.json2Pokemons(gameS.getPokemons()));
+                    _ar.setAgents(Arena.getAgents(gameS.getAgents(), gameGraph.getGraph()));
+                    _ar.setTimeToEnd(gameS.timeToEnd());
+                    gameInfo.load(getGsonObjectFromString(gameS.toString()));
+                    _ar.setMovesSoFar(gameInfo.moves);
+                    _win.update(_ar);
+                    _win.repaint();
                 }
-                // if (GameAlgo2.getIsAgentOnNode())
-                gameS.move();
-//            tlastMove=gameS.timeToEnd();
+
+                Thread.sleep(dt);
+                ind++;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            gameInfo.load(getGsonObjectFromString(gameS.toString()));
-            _ar.setMovesSoFar(gameInfo.moves);
-            _ar.setGraph(gameGraph.getGraph());
-            _ar.setPokemons(Arena.json2Pokemons(gameS.getPokemons()));
-            _ar.setAgents(Arena.getAgents(gameS.getAgents(), gameGraph.getGraph()));
-            _ar.setTimeToEnd(gameS.timeToEnd());
-            _win.update(_ar);
-            _win.repaint();
-
-            Thread.sleep(5000);
-            String res = gameS.toString();
-            _win.dispose();
-            System.out.println(res);
-            // System.exit(0);
+            // if (GameAlgo2.getIsAgentOnNode())
+            gameS.move();
+//            tlastMove=gameS.timeToEnd();
         }
 
+        gameInfo.load(getGsonObjectFromString(gameS.toString()));
+        _ar.setMovesSoFar(gameInfo.moves);
+        _ar.setGraph(gameGraph.getGraph());
+        _ar.setPokemons(Arena.json2Pokemons(gameS.getPokemons()));
+        _ar.setAgents(Arena.getAgents(gameS.getAgents(), gameGraph.getGraph()));
+        _ar.setTimeToEnd(gameS.timeToEnd());
+        _win.update(_ar);
+        _win.repaint();
+
+        Thread.sleep(5000);
+        String res = gameS.toString();
+        _win.dispose();
+        System.out.println(res);
+        System.exit(0);
     }
+
 
     /**
      * convert string to json Object

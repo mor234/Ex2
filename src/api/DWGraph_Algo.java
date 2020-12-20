@@ -449,7 +449,7 @@ public class DWGraph_Algo implements dw_graph_algorithms {
             Writer writer = Files.newBufferedWriter(Paths.get(file));
 
             // // convert graph in format containing edges and nodes in a collection format to JSON format and write to file
-            String jsonStr = gson.toJson(this.graphA.serlizationFormat());
+            String jsonStr = gson.toJson(this.graphA.serializationFormat());
             jsonStr = jsonStr.replaceAll("\\{\"_x\":", "\"");
             jsonStr = jsonStr.replaceAll("\"_y\":", "");
             jsonStr = jsonStr.replaceAll("\"_z\":", "");
