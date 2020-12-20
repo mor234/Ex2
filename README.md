@@ -16,5 +16,5 @@ the red circles are agent, the blue are nodes, and the green and wello ones are 
 # instalation
 
 
-# for more detailed information- look in the wiki pages of this repository.
+### for more detailed information- look in the wiki pages of this repository.
 
