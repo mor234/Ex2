@@ -1,1 +1,1 @@
-## java doc of the Project
+## Java docs of the Project
