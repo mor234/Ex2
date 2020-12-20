@@ -6,8 +6,12 @@ A number of algorithms are implemented on the directed and weighted graphs,
 Including the ability to save and restore the graph from a Json format file, calculate a very short directed trajectory, test
 Intentional connectivity and more.
 
-In the second phase of the project, we will use the structure of the data and algorithms to realize the "Pokemon Challenge" game - which includes processes, a graphical interface, and an automated system for playing against
+In the second parte of the project, we will use the structure of the data and algorithms to realize the "Pokemon Challenge" game - which includes processes, a graphical interface, and an automated system for playing against
 "Server".
-![alt text](images/level%2019.png)
+
+
+screen shot of a game in level 19.
+the red circles are agent, the blue are nodes, and the green and wello ones are pokemons.
+![alt text](images/level%2013.jpg)
 
 
