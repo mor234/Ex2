@@ -16,8 +16,8 @@ The red circles are agent, the blue are nodes, and the green and wello ones are 
 
 # Instalation
 To download the entire project:
-git clone https://github.com/mor234/Ex2.git
-To activate the game: 
-download Ex2.jar' and data' place in the same packege' and press Ex2.jar twice.
+git clone https://github.com/mor234/Ex2.git  
+To activate the game:   
+download Ex2.jar and the data directory, place them in the same directory and press on Ex2.jar twice.
 
 ### For more detailed information- look in the wiki pages of this repository.
