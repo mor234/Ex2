@@ -13,8 +13,8 @@ screen shot of a game in level 19.
 
 the red circles are agent, the blue are nodes, and the green and wello ones are pokemons.
 
-#instalation
+# instalation
 
 
-#for more ditaled information- look in the wiki pages of this repository
+# for more detailed information- look in the wiki pages of this repository.
 
